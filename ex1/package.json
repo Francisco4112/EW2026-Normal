@@ -1,0 +1,17 @@
+{
+  "name": "engweb2026-ex1",
+  "version": "1.0.0",
+  "description": "API de dados de jogos de tabuleiro para o exame ENGWEB2026",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node scripts/import.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mongoose": "^8.19.1",
+    "swagger-ui-express": "^5.0.1"
+  }
+}

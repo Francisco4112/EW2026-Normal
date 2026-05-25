@@ -1,0 +1,44 @@
+[
+  {
+    "titulo": "Clean Code",
+    "autor": "Robert C. Martin",
+    "paginas": 464,
+    "genero": "Software Engineering",
+    "lido": true
+  },
+  {
+    "titulo": "The Pragmatic Programmer",
+    "autor": "Andrew Hunt",
+    "paginas": 352,
+    "genero": "Software Engineering",
+    "lido": false
+  },
+  {
+    "titulo": "Dune",
+    "autor": "Frank Herbert",
+    "paginas": 688,
+    "genero": "Science Fiction",
+    "lido": false
+  },
+  {
+    "titulo": "1984",
+    "autor": "George Orwell",
+    "paginas": 328,
+    "genero": "Dystopian",
+    "lido": true
+  },
+  {
+    "titulo": "Sapiens",
+    "autor": "Yuval Noah Harari",
+    "paginas": 512,
+    "genero": "History",
+    "lido": false
+  },
+  {
+    "titulo": "Os Maias",
+    "autor": "Eca de Queiros",
+    "paginas": 720,
+    "genero": "Classic",
+    "lido": false
+  }
+]

@@ -1,0 +1,35 @@
+services:
+  mongo:
+    image: mongo:8
+    container_name: engweb2026-ex2-mongo
+    restart: unless-stopped
+    volumes:
+      - mongo_ex2_data:/data/db
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: engweb2026-ex2-api
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    environment:
+      PORT: 19020
+      MONGO_URL: mongodb://mongo:27017/readinglist
+    ports:
+      - "19020:19020"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: engweb2026-ex2-web
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "19021:80"
+
+volumes:
+  mongo_ex2_data:

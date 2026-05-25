@@ -1,0 +1,5 @@
+node_modules/
+__MACOSX/
+.DS_Store
+*.log
+npm-debug.log*

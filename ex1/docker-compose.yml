@@ -1,0 +1,22 @@
+services:
+  mongo:
+    image: mongo:8
+    container_name: engweb2026-ex1-mongo
+    restart: unless-stopped
+    volumes:
+      - mongo_ex1_data:/data/db
+
+  api:
+    build: .
+    container_name: engweb2026-ex1-api
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    environment:
+      PORT: 17000
+      MONGO_URL: mongodb://mongo:27017/jogostabuleiro
+    ports:
+      - "17000:17000"
+
+volumes:
+  mongo_ex1_data:

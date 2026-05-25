@@ -1,0 +1,216 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ENGWEB2026 Ex1 API",
+    "version": "1.0.0",
+    "description": "API de dados para jogos de tabuleiro."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:17000"
+    }
+  ],
+  "paths": {
+    "/jogos": {
+      "get": {
+        "summary": "Lista jogos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "editora",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filtra jogos por nome da editora."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de jogos."
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria um novo jogo",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Jogo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Jogo criado."
+          }
+        }
+      }
+    },
+    "/jogos/{id}": {
+      "get": {
+        "summary": "Obtém um jogo por id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Jogo encontrado."
+          },
+          "404": {
+            "description": "Jogo não encontrado."
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza um jogo por id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Jogo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Jogo atualizado."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove um jogo por id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Jogo removido."
+          }
+        }
+      }
+    },
+    "/autores": {
+      "get": {
+        "summary": "Lista autores sem repetições",
+        "responses": {
+          "200": {
+            "description": "Lista de autores."
+          }
+        }
+      }
+    },
+    "/categorias": {
+      "get": {
+        "summary": "Lista categorias sem repetições",
+        "responses": {
+          "200": {
+            "description": "Lista de categorias."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EntidadeNomeada": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" }
+        }
+      },
+      "Editora": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "country": { "type": "string" }
+        }
+      },
+      "Premio": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "year": { "type": "integer" }
+        }
+      },
+      "Jogo": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "year",
+          "category",
+          "minPlayers",
+          "maxPlayers",
+          "playingTimeMinutes",
+          "descriptionEN"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "year": { "type": "integer" },
+          "category": { "type": "string" },
+          "minPlayers": { "type": "integer" },
+          "maxPlayers": { "type": "integer" },
+          "playingTimeMinutes": { "type": "integer" },
+          "descriptionEN": { "type": "string" },
+          "autores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntidadeNomeada"
+            }
+          },
+          "editoras": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Editora"
+            }
+          },
+          "mecanicas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntidadeNomeada"
+            }
+          },
+          "premios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Premio"
+            }
+          }
+        }
+      }
+    }
+  }
+}
